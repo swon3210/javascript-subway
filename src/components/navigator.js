@@ -1,16 +1,15 @@
 import { SELECTOR_CLASS, SELECTOR_ID } from '../constants.js';
 import Observer from '../lib/Observer.js';
 import { $ } from '../utils/querySelector.js';
+import ROUTES from '../routes/routes';
 
 export default class Navigator extends Observer {
   #selector;
-  #routes;
   #appState;
 
-  constructor(selector = `#${SELECTOR_ID.NAVIGATOR}`, routes, state) {
+  constructor(selector = `#${SELECTOR_ID.NAVIGATOR}`, state) {
     super();
     this.#selector = selector;
-    this.#routes = routes;
     this.#appState = state;
   }
 
@@ -19,28 +18,37 @@ export default class Navigator extends Observer {
     parent.innerHTML = this.#getTemplate();
   }
 
-  initEvents() {
-    window.addEventListener('popstate', e => {
-      const path = e.state.path;
-      const targetPath = this.#routes[path] ? this.#routes[path] : '/';
-      this.#navigate(targetPath);
-    });
-
-    $(this.#selector).addEventListener('click', e => {
-      if (!e.target.classList.contains(SELECTOR_CLASS.NAVIGATOR_BUTTON)) return;
-      e.preventDefault();
-      const path = e.target.getAttribute('href');
-      history.pushState({ path }, null, path);
-      console.log(history);
-      this.#navigate(path);
-    });
+  #handlePopState(e) {
+    const path = e.state.path;
+    this.#navigate(path);
   }
 
+  #handleClickMenu(e) {
+    e.preventDefault();
+    if (!e.target.classList.contains(SELECTOR_CLASS.NAVIGATOR_BUTTON)) return;
+    const path = e.target.getAttribute('href');
+    history.pushState({ path }, null, path);
+    this.#navigate(path);
+  }
+
+  initEvents() {
+    window.addEventListener('popstate', e => {
+      this.#handlePopState.call(this, e);
+    });
+    $(this.#selector).addEventListener('click', e => {
+      this.#handleClickMenu.call(this, e);
+    });
+  }
+  // 각 관리 페이지에서 state를 업데이트 하면 바로 화면에 적용(해당 페이지의 update 호출)
+  // navigate할 때는 update를 할 필요가 없음.
+  // 그냥 지금 state 그대로, 해당 관리 페이지로 안내해주기만 하면 됨.
+
   async #navigate(path) {
-    const targetPath = this.#routes[path] ? this.#routes[path] : '/';
+    const targetPath = ROUTES[path] ? ROUTES[path] : '/';
     const response = await fetch(targetPath);
-    const data = await response.text();
-    $(this.#selector).innerHTML = data;
+    const template = await response.text();
+    $(`#${SELECTOR_ID.APP}`).innerHTML = template;
+    this.render();
   }
 
   // TODO : 이거 굳이 동적으로 넣는 이유가 뭔지 알아보기
@@ -60,7 +68,7 @@ export default class Navigator extends Observer {
           <button href="/sections" class="${SELECTOR_CLASS.NAVIGATOR_BUTTON} btn bg-white shadow mx-1">🔁 구간 관리</button>
         </a>
         <a class="my-1">
-          <button href="/" class="${SELECTOR_CLASS.NAVIGATOR_BUTTON} btn bg-white shadow mx-1">🗺️ 전체 보기</button>
+          <button href="/subway" class="${SELECTOR_CLASS.NAVIGATOR_BUTTON} btn bg-white shadow mx-1">🗺️ 전체 보기</button>
         </a>
         <a class="my-1">
           <button href="/search" class="${SELECTOR_CLASS.NAVIGATOR_BUTTON} btn bg-white shadow mx-1">🔎 길 찾기</button>
