@@ -14,7 +14,7 @@
 # 🔥 Projects!
 
 <p align="middle">
-  <img src="./src/assets/images/readme/subway_app_preview.png">
+  <img src="./images/readme/subway_app_preview.png">
 </p>
 
 ## 🎯 step1
@@ -27,19 +27,21 @@
 ### 라우팅 기능
 
 - [x] Browser History Api를 이용하여 SPA처럼 라우팅을 적용한다.
+- [x] 라우팅에 따라 컴포넌트가 렌더링되도록 한다.
+
 <br><br>
-<img src="./src/assets/images/readme/subway_routing.png">
+<img src="./images/readme/subway_routing.png">
 
 ### 회원 기능
 
-- [ ] 유저는 회원 가입을 할 수 있다,
-  - [ ] 회원 가입시 받는 정보는 `email`, `name`, `password`이다.
 - [ ] 유저는 로그인 할 수 있다.
-  - [ ] 로그인하고 나면 로그인 버튼은 로그아웃 버튼으로 변경되어야 한다.
-  - [ ] 로그인한 유저만, 정보의 수정이 가능하다.
-  - [ ] 로그인하지 않은 유저는 정보를 읽는 것만 가능하다.
+  - 로그인하고 나면 로그인 버튼은 로그아웃 버튼으로 변경되어야 한다.
+  - 로그인한 유저만, 정보의 수정이 가능하다.
+  - 로그인하지 않은 유저는 정보를 읽는 것만 가능하다.
 - [ ] 유저는 로그아웃할 수 있다.
-  - [ ] 로그아웃하면 `/` 루트 페이지로 돌아온다.
+  - 로그아웃하면 `/` 루트 페이지로 돌아온다.
+- [ ] 유저는 회원 가입을 할 수 있다,
+  - 회원 가입시 받는 정보는 `email`, `name`, `password`이다.
 
 ## 🎯🎯 step2
 
