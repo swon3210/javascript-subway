@@ -4,6 +4,8 @@ export const SELECTOR_ID = Object.freeze({
   MAIN_CONTAINER: 'main-container',
   STATION_LIST: 'station-list',
   LINE_LIST: 'line-list',
+  LOG_IN_FORM: 'login-form',
+  SIGN_UP_FORM: 'signup-form',
 });
 
 export const SELECTOR_CLASS = Object.freeze({

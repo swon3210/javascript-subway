@@ -28,7 +28,7 @@ export default class Router {
 
     $(`#${SELECTOR_ID.MAIN_CONTAINER}`).innerHTML = data;
     this.#registration[path].forEach(component => {
-      component.render();
+      component.createComponent();
     });
   }
 

@@ -12,13 +12,13 @@ export default class LineList extends Observer {
     this.#state = state;
   }
 
-  render() {
+  createComponent() {
     const parent = $(this.#selector);
     parent.innerHTML = this.#getTemplate();
   }
 
   update() {
-    this.render();
+    this.createComponent();
   }
 
   #getTemplate() {
