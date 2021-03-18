@@ -4,13 +4,21 @@ import { $ } from '../utils/querySelector.js';
 
 // TODO : subscription 을 State 로 옮기고 라우터가 State 를 받도록 변경
 export default class Router {
-  #subscription = {};
+  #registration = {};
 
   initRouteEvent() {
     window.addEventListener('popstate', e => {
       this.#handlePopState.call(this, e);
     });
-    history.pushState({ path: '/' }, null, '/');
+    history.replaceState({ path: '/' }, null, '/');
+  }
+
+  register(path, component) {
+    if (!this.#registration[path]) {
+      this.#registration[path] = [component];
+      return;
+    }
+    this.#registration[path].push(component);
   }
 
   subscribe(path, component) {
@@ -27,8 +35,8 @@ export default class Router {
     const data = await response.text();
 
     $(`#${SELECTOR_ID.MAIN_CONTAINER}`).innerHTML = data;
-    this.#subscription[path].forEach(component => {
-      component.render();
+    this.#registration[path].forEach(component => {
+      component.createComponent();
     });
   }
 
