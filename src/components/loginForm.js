@@ -1,6 +1,5 @@
 import { SELECTOR_ID } from '../constants.js';
-import { $ } from '../utils/querySelector.js';
-import { requestLoginToken } from '../api/member.js';
+import { $ } from '../utils/utils.js';
 
 export default class LoginForm {
   #selector;
@@ -8,18 +7,13 @@ export default class LoginForm {
     this.#selector = selector;
   }
 
-  #initEvents() {
-    $(this.#selector).addEventListener('submit', e => {
-      e.preventDefault();
-      const { email, password } = e.target;
-      requestLoginToken(email.value, password.value);
-    });
-  }
-
   createComponent() {
     const parent = $(this.#selector);
     parent.innerHTML = this.#getTemplate();
-    this.#initEvents();
+  }
+
+  update() {
+    this.createComponent();
   }
 
   #getTemplate() {

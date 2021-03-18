@@ -1,6 +1,6 @@
-import { SELECTOR_ID } from '../constants.js';
+import { PATH, SELECTOR_ID } from '../constants.js';
 import ROUTES from './routes.js';
-import { $ } from '../utils/querySelector.js';
+import { $ } from '../utils/utils.js';
 
 // TODO : subscription 을 State 로 옮기고 라우터가 State 를 받도록 변경
 export default class Router {
@@ -28,7 +28,7 @@ export default class Router {
 
     $(`#${SELECTOR_ID.MAIN_CONTAINER}`).innerHTML = data;
     this.#registration[path].forEach(component => {
-      component.createComponent();
+      component.update();
     });
   }
 

@@ -1,5 +1,5 @@
 import { SELECTOR_ID } from '../constants.js';
-import { $ } from '../utils/querySelector.js';
+import { $ } from '../utils/utils.js';
 import { requestSignUp } from '../api/member.js';
 
 export default class SignupForm {
@@ -20,6 +20,10 @@ export default class SignupForm {
         alert('회원가입에 실패하였습니다.');
       });
     });
+  }
+
+  update() {
+    this.createComponent();
   }
 
   createComponent() {

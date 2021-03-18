@@ -1,6 +1,6 @@
 import { SELECTOR_ID } from '../constants';
 import Observer from '../lib/Observer';
-import { $ } from '../utils/querySelector';
+import { $ } from '../utils/utils';
 
 export default class StationList extends Observer {
   #selector;
@@ -22,7 +22,10 @@ export default class StationList extends Observer {
   }
 
   #getTemplate() {
-    return this.#state.stationList.map(station => this.#getStationTemplate(station)).join('');
+    return this.#state
+      .get()
+      .stationList.map(station => this.#getStationTemplate(station))
+      .join('');
   }
 
   #getStationTemplate(stationName) {

@@ -3,6 +3,7 @@ export default class Subject {
     this.observers = {
       stationList: [],
       lineList: [],
+      isLoggedIn: [],
     };
   }
 
