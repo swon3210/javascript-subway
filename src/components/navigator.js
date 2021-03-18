@@ -8,7 +8,7 @@ export default class Navigator {
     this.#selector = selector;
   }
 
-  render() {
+  createComponent() {
     const parent = $(this.#selector);
     parent.innerHTML = this.#getTemplate();
   }

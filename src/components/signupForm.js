@@ -1,5 +1,6 @@
-import { EntryOptionPlugin } from 'webpack';
 import { SELECTOR_ID } from '../constants.js';
+import { $ } from '../utils/querySelector.js';
+import { requestSignUp } from '../api/member.js';
 
 export default class SignupForm {
   #selector;
@@ -10,7 +11,14 @@ export default class SignupForm {
   #initEvents() {
     $(this.#selector).addEventListener('submit', e => {
       e.preventDefault();
-      console.log('hi');
+      const { email, name, password } = e.target;
+      requestSignUp(email.value, name.value, password.value).then(isSignupOK => {
+        if (isSignupOK) {
+          history.back();
+          return;
+        }
+        alert('회원가입에 실패하였습니다.');
+      });
     });
   }
 
@@ -28,6 +36,10 @@ export default class SignupForm {
         <input type="email" id="email" name="email" class="input-field" placeholder="이메일" required />
       </div>
       <div class="input-control">
+        <label for="name" class="input-label" hidden>이름</label>
+        <input type="text" id="name" name="name" class="input-field" placeholder="이름" />
+      </div>
+      <div class="input-control">
         <label for="password" class="input-label" hidden>비밀번호</label>
         <input type="password" id="password" name="password" class="input-field" placeholder="비밀번호" />
       </div>
@@ -42,7 +54,7 @@ export default class SignupForm {
         />
       </div>
       <div class="input-control">
-        <button type="button" name="submit" class="input-submit w-100 bg-cyan-300">확인</button>
+        <button type="submit" name="submit" class="input-submit w-100 bg-cyan-300">확인</button>
       </div>
     `;
   }

@@ -1,5 +1,4 @@
 import { SELECTOR_ID } from '../constants.js';
-import Observer from '../lib/Observer.js';
 import { $ } from '../utils/querySelector.js';
 import { requestLoginToken } from '../api/member.js';
 
@@ -10,11 +9,10 @@ export default class LoginForm {
   }
 
   #initEvents() {
-    console.log(this.#selector);
     $(this.#selector).addEventListener('submit', e => {
       e.preventDefault();
       const { email, password } = e.target;
-      requestLoginToken(email, password);
+      requestLoginToken(email.value, password.value);
     });
   }
 
@@ -39,7 +37,7 @@ export default class LoginForm {
       </div>
       <p class="text-gray-700 pl-2">
         아직 회원이 아니신가요?
-        <a href="/pages/signup.html">회원가입</a>
+        <a id="signup-button" href="/signup">회원가입</a>
       </p>
     `;
   }

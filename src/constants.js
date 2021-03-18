@@ -6,6 +6,7 @@ export const SELECTOR_ID = Object.freeze({
   LINE_LIST: 'line-list',
   LOG_IN_FORM: 'login-form',
   SIGN_UP_FORM: 'signup-form',
+  SIGN_UP_BUTTON: 'signup-button',
 });
 
 export const SELECTOR_CLASS = Object.freeze({

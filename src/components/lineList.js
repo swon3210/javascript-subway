@@ -22,7 +22,7 @@ export default class LineList extends Observer {
   }
 
   #getTemplate() {
-    return this.#state.lineList.map(line => this.#getLineTemplate(line));
+    return this.#state.lineList.map(line => this.#getLineTemplate(line)).join('');
   }
 
   #getLineTemplate(lineName) {

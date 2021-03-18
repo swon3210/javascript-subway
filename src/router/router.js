@@ -21,14 +21,6 @@ export default class Router {
     this.#registration[path].push(component);
   }
 
-  subscribe(path, component) {
-    if (!this.#subscription[path]) {
-      this.#subscription[path] = [component];
-      return;
-    }
-    this.#subscription[path].push(component);
-  }
-
   async navigate(path) {
     const targetPath = ROUTES[path] ? ROUTES[path] : '/pages/main.html';
     const response = await fetch(targetPath);
