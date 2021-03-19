@@ -16,7 +16,7 @@ module.exports = {
   devtool: 'source-map',
   devServer: {
     contentBase: './dist',
-    port: 39557,
+    port: 5500,
     open: true,
   },
   plugins: [
@@ -29,10 +29,7 @@ module.exports = {
       template: './index.html',
     }),
     new CopyWebpackPlugin({
-      patterns: [
-        { from: './pages', to: './pages' },
-        { from: './images', to: './images' },
-      ],
+      patterns: [{ from: './images', to: './images' }],
     }),
   ],
   module: {

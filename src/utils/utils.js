@@ -24,3 +24,8 @@ export const sessionStore = {
     return parsedItem ? parsedItem : item;
   },
 };
+
+export const isObject = obj => {
+  const type = typeof obj;
+  return type !== 'function' && type === 'object' && !!obj;
+};

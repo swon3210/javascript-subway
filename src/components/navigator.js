@@ -3,22 +3,19 @@ import Observer from '../lib/Observer.js';
 import { $ } from '../utils/utils.js';
 
 export default class Navigator extends Observer {
-  #selector;
+  #targetSelector;
   #state;
 
-  constructor(state, selector = `#${SELECTOR_ID.NAVIGATOR}`) {
+  constructor(state, targetSelector = `#${SELECTOR_ID.NAVIGATOR}`) {
     super();
-    this.#selector = selector;
+    this.#targetSelector = targetSelector;
     this.#state = state;
   }
 
-  update() {
-    this.createComponent();
-  }
+  renderPage() {}
 
-  createComponent() {
-    const parent = $(this.#selector);
-    parent.innerHTML = this.#getTemplate();
+  renderComponent() {
+    $(this.#targetSelector).innerHTML = this.#getTemplate();
   }
 
   // TODO : 이거 굳이 동적으로 넣는 이유가 뭔지 알아보기
@@ -54,8 +51,8 @@ export default class Navigator extends Observer {
           🔎 길 찾기
         </a>
         ${
-          this.#state.get().isLoggedIn
-            ? `<a href="${PATH.LOG_OUT}" class="${SELECTOR_CLASS.NAVIGATOR_BUTTON} btn bg-white shadow mx-1 my-1 text-sm d-flex items-center">
+          this.#state.get('accessToken')
+            ? `<a id="${SELECTOR_ID.LOG_OUT_BUTTON}" href="${PATH.ROOT}" class="${SELECTOR_CLASS.NAVIGATOR_BUTTON} btn bg-white shadow mx-1 my-1 text-sm d-flex items-center">
               ❌ 로그아웃
             </a>`
             : `<a href="${PATH.LOG_IN}" class="${SELECTOR_CLASS.NAVIGATOR_BUTTON} btn bg-white shadow mx-1 my-1 text-sm d-flex items-center">

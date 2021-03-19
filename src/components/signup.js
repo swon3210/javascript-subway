@@ -2,14 +2,26 @@ import { SELECTOR_ID } from '../constants.js';
 import { $ } from '../utils/utils.js';
 import { requestSignUp } from '../api/member.js';
 
-export default class SignupForm {
-  #selector;
-  constructor(selector = `#${SELECTOR_ID.SIGN_UP_FORM}`) {
-    this.#selector = selector;
+export default class SignUp {
+  #targetSelector;
+  #parentSelector;
+
+  constructor(targetSelector = `#${SELECTOR_ID.SIGN_UP_FORM}`, parentSelector = `#${SELECTOR_ID.MAIN_CONTAINER}`) {
+    this.#targetSelector = targetSelector;
+    this.#parentSelector = parentSelector;
+  }
+
+  renderPage() {
+    $(this.#parentSelector).innerHTML = this.#getWrapperTemplate();
+  }
+
+  renderComponent() {
+    $(this.#targetSelector).innerHTML = this.#getTemplate();
+    this.#initEvents();
   }
 
   #initEvents() {
-    $(this.#selector).addEventListener('submit', e => {
+    $(this.#targetSelector).addEventListener('submit', e => {
       e.preventDefault();
       const { email, name, password } = e.target;
       requestSignUp(email.value, name.value, password.value).then(isSignupOK => {
@@ -22,15 +34,15 @@ export default class SignupForm {
     });
   }
 
-  update() {
-    this.createComponent();
-  }
-
-  createComponent() {
-    const parent = $(this.#selector);
-    parent.innerHTML = this.#getTemplate();
-
-    this.#initEvents();
+  #getWrapperTemplate() {
+    return `
+      <div test-id="/signup" class="wrapper p-10 bg-white">
+        <div class="heading">
+          <h2 class="text">📝 회원가입</h2>
+        </div>
+        <form id="${SELECTOR_ID.SIGN_UP_FORM}" name="login" class="form"></form>
+      </div>
+    `;
   }
 
   #getTemplate() {

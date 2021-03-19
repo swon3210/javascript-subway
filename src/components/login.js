@@ -1,19 +1,32 @@
 import { SELECTOR_ID } from '../constants.js';
 import { $ } from '../utils/utils.js';
 
-export default class LoginForm {
-  #selector;
-  constructor(selector = `#${SELECTOR_ID.LOG_IN_FORM}`) {
-    this.#selector = selector;
+export default class Login {
+  #targetSelector;
+  #parentSelector;
+
+  constructor(targetSelector = `#${SELECTOR_ID.SIGN_UP_FORM}`, parentSelector = `#${SELECTOR_ID.MAIN_CONTAINER}`) {
+    this.#targetSelector = targetSelector;
+    this.#parentSelector = parentSelector;
   }
 
-  createComponent() {
-    const parent = $(this.#selector);
-    parent.innerHTML = this.#getTemplate();
+  renderPage() {
+    $(this.#parentSelector).innerHTML = this.#getWrapperTemplate();
   }
 
-  update() {
-    this.createComponent();
+  renderComponent() {
+    $(this.#targetSelector).innerHTML = this.#getTemplate();
+  }
+
+  #getWrapperTemplate() {
+    return `
+      <div test-id="/login" class="wrapper p-10 bg-white">
+        <div class="heading">
+          <h2>👋 로그인</h2>
+        </div>
+        <form id="${SELECTOR_ID.LOG_IN_FORM}" name="login" class="form"></form>
+      </div>
+    `;
   }
 
   #getTemplate() {

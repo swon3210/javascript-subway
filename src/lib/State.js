@@ -1,3 +1,4 @@
+import { isObject } from '../utils/utils.js';
 import Subject from './Subject.js';
 
 export default class State extends Subject {
@@ -8,7 +9,7 @@ export default class State extends Subject {
     this.#state = {
       stationList: ['사당', '방배'],
       lineList: ['1호선', '2호선'],
-      isLoggedIn: false,
+      accessToken: null,
     };
   }
 
@@ -22,7 +23,18 @@ export default class State extends Subject {
     this.notifyAll();
   }
 
-  get() {
+  get(key) {
+    if (!key) return;
+    if (Array.isArray(this.#state[key])) {
+      return [...this.#state[key]];
+    }
+    if (isObject(this.#state[key])) {
+      return { ...this.#state[key] };
+    }
+    return this.#state[key];
+  }
+
+  getAll() {
     return Object.assign({}, this.#state);
   }
 }
