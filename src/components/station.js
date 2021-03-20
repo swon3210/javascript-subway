@@ -28,7 +28,7 @@ export default class Station extends Observer {
 
   #getWrapperTemplate() {
     return `
-      <div test-id="/stations" class="wrapper bg-white p-10">
+      <div data-test-id="stations" class="wrapper bg-white p-10">
         <div class="heading"><h2 class="mt-1">🚉 역 관리</h2></div>
         <form>
           <div class="d-flex w-100">

@@ -8,8 +8,9 @@ export default class State extends Subject {
     super();
     this.#state = {
       stationList: ['사당', '방배'],
-      lineList: ['1호선', '2호선'],
-      accessToken: null,
+      lineList: [{ name: '1호선' }, { name: '2호선' }],
+      sectionList: [{ name: '섹션1' }, { name: '섹션2' }],
+      isLoggedIn: false,
     };
   }
 

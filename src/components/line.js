@@ -24,7 +24,7 @@ export default class Line extends Observer {
 
   #getWrapperTemplate() {
     return `
-      <div test-id="/lines" class="wrapper bg-white p-10">
+      <div data-test-id="lines" class="wrapper bg-white p-10">
         <div class="heading d-flex">
           <h2 class="mt-1 w-100">🛤️ 노선 관리</h2>
           <button type="button" class="create-line-btn modal-trigger-btn bg-cyan-300 ml-2">노선 추가</button>

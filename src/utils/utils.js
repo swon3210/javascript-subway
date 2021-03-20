@@ -12,7 +12,6 @@ export const $ = (selector, target = document) => {
 export const sessionStore = {
   setItem(key, item) {
     if (key && typeof key !== 'string') return;
-    if (!item) return;
 
     sessionStorage.setItem(key, JSON.stringify(item));
   },
@@ -22,6 +21,11 @@ export const sessionStore = {
     const parsedItem = JSON.parse(item);
 
     return parsedItem ? parsedItem : item;
+  },
+  removeItem(key) {
+    if (key && typeof key !== 'string') return;
+
+    sessionStorage.removeItem(key);
   },
 };
 
