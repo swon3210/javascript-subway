@@ -21,6 +21,7 @@ export default class Subway {
     // $(this.#targetSelector).innerHTML = this.#getTemplate();
   }
 
+  // TODO: fade-in 적용하기
   #getWrapperTemplate() {
     return `
       전체 보기

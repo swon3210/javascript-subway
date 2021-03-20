@@ -20,7 +20,7 @@ export default class Login {
 
   #getWrapperTemplate() {
     return `
-      <div data-test-id="login" class="wrapper p-10 bg-white">
+      <div data-test-id="login" class="wrapper p-10 bg-white fade-in">
         <div class="heading">
           <h2>👋 로그인</h2>
         </div>

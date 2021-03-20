@@ -21,6 +21,7 @@ export default class Search {
     // $(this.#targetSelector).innerHTML = this.#getTemplate();
   }
 
+  // TODO: fade-in 적용하기
   #getWrapperTemplate() {
     return `
       검색 페이지

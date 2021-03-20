@@ -36,7 +36,7 @@ export default class SignUp {
 
   #getWrapperTemplate() {
     return `
-      <div data-test-id="signup" class="wrapper p-10 bg-white">
+      <div data-test-id="signup" class="wrapper p-10 bg-white fade-in">
         <div class="heading">
           <h2 class="text">📝 회원가입</h2>
         </div>
