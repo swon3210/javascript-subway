@@ -19,14 +19,12 @@ export const SELECTOR_ID = Object.freeze({
   SIGN_UP_PASSWORD_CHECK_INPUT: 'signup-password-check-input',
   SIGN_UP_NAME_INPUT: 'signup-name-input',
   GUIDE_WRAPPER: 'guide-wrapper',
-  MODAL: 'modal',
   BACKDROP: 'backdrop',
 });
 
 // TODO : BEM 일괄 적용
 export const SELECTOR_CLASS = Object.freeze({
   NAVIGATOR_BUTTON: 'js-navigator__button',
-  CREATE_LINE_BUTTON: 'create-line-btn',
   STATION_LIST_ITEM: 'station-list__item',
   STATION_LIST_ITEM_NAME: 'station-list__item-name',
   STATION_LIST_ITEM_INPUT: 'station-list__item-input',
@@ -35,6 +33,11 @@ export const SELECTOR_CLASS = Object.freeze({
   STATION_LIST_ITEM_DELETE: 'station-list__item-delete',
   LINE_LIST_ITEM: 'line-list__item',
   SECTION_LIST_ITEM: 'section-list__item',
+  SUBWAY_LINE_COLOR_PICKER: 'subway-line-color-picker',
+  MODAL_OPEN_BUTTON: 'modal-open-button',
+  MODAL_INNER: 'modal-inner',
+  MODAL_CLOSE: 'modal-close',
+  MODAL: 'modal',
 });
 
 export const STYLE_CLASS = Object.freeze({

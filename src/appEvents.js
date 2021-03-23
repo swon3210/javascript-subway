@@ -1,5 +1,4 @@
 import delegateNavigatorClickEvent from './delegators/navigator.js';
-
 import delegateLoginSubmitEvent from './delegators/login.js';
 import delegateSignUpSubmitEvent from './delegators/signup.js';
 import {
@@ -7,6 +6,7 @@ import {
   delegateStationFocusOutEvent,
   delegateStationClickEvent,
 } from './delegators/station.js';
+import { delegateModalClickEvent } from './delegators/modal.js';
 
 const delegateEvents = () => {
   document.body.addEventListener('click', handleClickEvents);
@@ -17,6 +17,7 @@ const delegateEvents = () => {
 function handleClickEvents(event) {
   delegateNavigatorClickEvent(event);
   delegateStationClickEvent(event);
+  delegateModalClickEvent(event);
 }
 
 function handleSubmitEvents(event) {

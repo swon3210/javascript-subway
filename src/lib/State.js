@@ -9,12 +9,9 @@ export default class State extends Subject {
   constructor() {
     super();
     this.#state = {
-      [STATE_KEY.STATION_LIST]: [
-        { id: 1, name: '역 1' },
-        { id: 2, name: '역 2' },
-      ],
-      [STATE_KEY.LINE_LIST]: [{ name: '노선 1' }, { name: '노선 2' }],
-      [STATE_KEY.SECTION_LIST]: [{ name: '구간 1' }, { name: '구간 2' }],
+      [STATE_KEY.STATION_LIST]: [],
+      [STATE_KEY.LINE_LIST]: [],
+      [STATE_KEY.SECTION_LIST]: [],
       [STATE_KEY.IS_LOGGED_IN]: false,
     };
   }
