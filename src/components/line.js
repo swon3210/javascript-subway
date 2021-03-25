@@ -1,9 +1,7 @@
 import { SELECTOR_CLASS, SELECTOR_ID, PAGE_TITLE, FILE_PATH, STATE_KEY, SELECTOR_NAME, CONFIRM_MESSAGE } from '../constants.js';
 import Observer from '../lib/Observer.js';
-import { $, closeModal, openModal, setHeadTagAttribute } from '../utils/dom.js';
-import { colorOptions } from '../utils/mock.js';
-import { state } from '../store.js';
-import { delegateLineClickEvent, onColorPickerClick, onLineItemDelete } from '../delegators/line.js';
+import { $, setHeadTagAttribute } from '../utils/dom.js';
+import { delegateLineClickEvent } from '../delegators/line.js';
 
 export default class Line extends Observer {
   #targetSelector;
